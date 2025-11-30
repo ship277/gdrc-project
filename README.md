@@ -1,0 +1,1 @@
+expanding a followed tutorial (Studyplan.dev) into a project, testing and learning to use SDL3's "main callbacks" structure.
