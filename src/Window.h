@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_rect.h>
 #include <SDL3/SDL_render.h>
@@ -10,18 +11,15 @@ public:
     Window() {
         SDL_CreateWindowAndRenderer(
             "tutorial",
-            800, 300,
+            960, 540,
             SDL_WINDOW_OPENGL,
             &window, &renderer
         );
     }
 
-    void Update(SDL_Texture* texture, SDL_FRect shape) {
+    void Update() {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-        if (texture)
-            SDL_RenderTexture(renderer, texture, nullptr, &shape);
-        SDL_RenderPresent(renderer);
     }
 
     Window(const Window&) = delete;

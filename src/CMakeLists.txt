@@ -7,6 +7,8 @@ target_sources(program
   PRIVATE
     main.cpp
     Window.h
+    Map.h
+    Player.h
 )
 
 target_link_libraries(program
