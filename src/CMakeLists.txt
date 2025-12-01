@@ -6,9 +6,9 @@ add_executable(program)
 target_sources(program 
   PRIVATE
     main.cpp
-    Window.h
-    Map.h
-    Player.h
+    Window.cpp
+    Map.cpp
+    Player.cpp
 )
 
 target_link_libraries(program

@@ -1,11 +1,9 @@
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_scancode.h>
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>
-#include <SDL3_image/SDL_image.h>
 #include "Window.h"
 #include "Player.h"
 #include "Map.h"
+// #include "Ext.h"
 
 struct ProgramState {
     Window window;
@@ -50,12 +48,12 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
     state->window.Update();
 
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(renderer, &state->player.plr);
+    SDL_RenderFillRect(renderer, &state->player.GetPlr());
 
     SDL_RenderPresent(state->window.GetRenderer());
     return SDL_APP_CONTINUE;
 }
 
 void SDL_AppQuit(void* AppState, SDL_AppResult Result) {
-    delete AppState;
+    delete /* & */AppState;
 }

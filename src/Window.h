@@ -1,46 +1,22 @@
-#pragma once
+#ifndef WINDOW_H
+#define WINDOW_H
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_rect.h>
-#include <SDL3/SDL_render.h>
-#include <SDL3/SDL_video.h>
-#include <iostream>
 
 class Window {
 public:
-    Window() {
-        SDL_CreateWindowAndRenderer(
-            "tutorial",
-            960, 540,
-            SDL_WINDOW_OPENGL,
-            &window, &renderer
-        );
-    }
-
-    void Update() {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-    }
+    Window();
+    ~Window();
+    static const int width = 1376, height = 576;
+    void Update();
+    SDL_Window* GetWindow();
+    SDL_Renderer* GetRenderer();
 
     Window(const Window&) = delete;
     Window& operator=(const Window&) = delete;
-
-    ~Window() {
-        if (window && SDL_WasInit(SDL_INIT_VIDEO)) {
-            SDL_DestroyWindow(window);
-        } else {
-            std::cout << "Skipping SDL_DestroyWindow\n";
-        }
-    }
-
-    SDL_Window* GetWindow() {
-        return window;
-    }
-    SDL_Renderer* GetRenderer() {
-        return renderer;
-    }
-
 private:
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
+    SDL_Window* window;
+    SDL_Renderer* renderer;
 };
+
+#endif
