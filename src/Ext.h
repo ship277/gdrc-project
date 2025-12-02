@@ -7,6 +7,10 @@ public:
         float x;
         float y;
     };
+    struct iVec2 {
+        int x;
+        int y;
+    };
 };
 
 #endif

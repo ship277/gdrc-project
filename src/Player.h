@@ -7,13 +7,12 @@
 class Player {
 public:
     Player();
+    void drawPlayer();
     void HandleEvents(const bool* key_states, float elapsedFrameTime);
-    SDL_FRect &GetPlr();
-    ext::Vec2 dir;
 
-private:
-    float speed;
-    ext::Vec2 pos;
+    float speed = 300, diameter = 10, radius = diameter/2;
+    ext::Vec2 pos, nextPos;
+    ext::iVec2 cTile, nTile;
     SDL_FRect plr;
 };
 

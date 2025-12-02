@@ -1,6 +1,7 @@
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>
 #include "Window.h"
+#include "Window.cpp"
 #include "Player.h"
 #include "Map.h"
 // #include "Ext.h"
@@ -36,19 +37,34 @@ SDL_AppResult SDL_AppEvent(void* AppState, SDL_Event* e) {
 
 SDL_AppResult SDL_AppIterate(void* AppState) {
     ProgramState* state = static_cast<ProgramState*>(AppState);
-    
+    system("clear");
+
     const bool *key_states = SDL_GetKeyboardState(NULL);
     SDL_Renderer* renderer = state->window.GetRenderer();
-
     float elapsedFrameTime = (SDL_GetTicks() - state->PreviousFrame) / 1000.0f;
+
     state->PreviousFrame = SDL_GetTicks();
 
     state->player.HandleEvents(key_states, elapsedFrameTime);
 
     state->window.Update();
 
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    SDL_RenderFillRect(renderer, &state->player.GetPlr());
+    // if (key_states[SDL_SCANCODE_TAB]) {
+        state->map.DrawMap();
+        state->player.drawPlayer();
+    // }
+
+    std::cout << state->player.cTile.x << "," << state->player.cTile.y << " - ";
+    if (state->map.mapGrid[state->player.cTile.y][state->player.cTile.x] > 0) 
+        std::cout << "Wall" << std::endl;
+    else
+        std::cout << "Space" << std::endl;
+
+    std::cout << state->player.nTile.x << "," << state->player.nTile.y << " - ";
+    if (state->map.mapGrid[state->player.nTile.y][state->player.nTile.x] > 0) 
+        std::cout << "Wall" << std::endl;
+    else
+        std::cout << "Space" << std::endl;
 
     SDL_RenderPresent(state->window.GetRenderer());
     return SDL_APP_CONTINUE;

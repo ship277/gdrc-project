@@ -6,7 +6,6 @@ add_executable(program)
 target_sources(program 
   PRIVATE
     main.cpp
-    Window.cpp
     Map.cpp
     Player.cpp
 )
