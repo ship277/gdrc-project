@@ -37,7 +37,6 @@ SDL_AppResult SDL_AppEvent(void* AppState, SDL_Event* e) {
 
 SDL_AppResult SDL_AppIterate(void* AppState) {
     ProgramState* state = static_cast<ProgramState*>(AppState);
-    system("clear");
 
     const bool *key_states = SDL_GetKeyboardState(NULL);
     SDL_Renderer* renderer = state->window.GetRenderer();
@@ -51,20 +50,23 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
 
     // if (key_states[SDL_SCANCODE_TAB]) {
         state->map.DrawMap();
-        state->player.drawPlayer();
+        state->player.drawPlayer(state->player.GetDir());
     // }
 
-    std::cout << state->player.cTile.x << "," << state->player.cTile.y << " - ";
-    if (state->map.mapGrid[state->player.cTile.y][state->player.cTile.x] > 0) 
-        std::cout << "Wall" << std::endl;
-    else
-        std::cout << "Space" << std::endl;
+    // std::cout << state->player.cTile.x << "," << state->player.cTile.y << " - ";
+    // if (state->map.mapGrid[state->player.cTile.y][state->player.cTile.x] > 0) 
+    //     std::cout << "Wall" << std::endl;
+    // else
+    //     std::cout << "Space" << std::endl;
 
-    std::cout << state->player.nTile.x << "," << state->player.nTile.y << " - ";
-    if (state->map.mapGrid[state->player.nTile.y][state->player.nTile.x] > 0) 
-        std::cout << "Wall" << std::endl;
-    else
-        std::cout << "Space" << std::endl;
+    // std::cout << state->player.nTile.x << "," << state->player.nTile.y << " - ";
+    // if (state->map.mapGrid[state->player.nTile.y][state->player.nTile.x] > 0) 
+    //     std::cout << "Wall" << std::endl;
+    // else
+    //     std::cout << "Space" << std::endl;
+
+    // std::cout << state->player.dir.x << "," << state->player.dir.y << std::endl;
+    // std::cout << state->player.angle << std::endl;
 
     SDL_RenderPresent(state->window.GetRenderer());
     return SDL_APP_CONTINUE;

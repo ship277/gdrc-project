@@ -1,1 +1,1 @@
-expanding a followed tutorial (Studyplan.dev) into a project, testing and learning to use SDL3's "main callbacks" structure.
+literally spaghetti atp, but i'll fix it up gradually. ray logic not implemented yet, working on perfecting movement. this is my senior year project, will turn into a full fledged repo once it's finished.

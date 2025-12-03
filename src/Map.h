@@ -12,7 +12,7 @@ public:
     void DrawMap();
     std::vector<std::vector<int>> mapGrid;
     SDL_FRect tile;
-    const float tileSize = ((float)Window::height/10);
+    inline static const float tileSize = ((float)Window::height/10);
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 class Window {
 public:
-    static const int width = 1376, height = 576;
+    inline static const int width = 1376, height = 576;
     Window() {
         SDL_CreateWindowAndRenderer(
             "tutorial",
