@@ -6,7 +6,6 @@
 
 class Window {
 public:
-    inline static const int width = 1376, height = 576;
     Window() {
         SDL_CreateWindowAndRenderer(
             "tutorial",
@@ -32,16 +31,24 @@ public:
         }
     }
 
-    static SDL_Window* GetWindow() {
+    inline static SDL_Window* GetWindow() {
         return window;
     }
-    static SDL_Renderer* GetRenderer() {
+    inline static SDL_Renderer* GetRenderer() {
         return renderer;
     }
 
+    static int GetWidth() {
+        return width;
+    }
+    static int GetHeight() {
+        return height;
+    }
+
 private:
-    static SDL_Window* window;
-    static SDL_Renderer* renderer;
+    inline static SDL_Window* window = nullptr;
+    inline static SDL_Renderer* renderer = nullptr;
+    static const int width = 1376, height = 576;
 };
 
 

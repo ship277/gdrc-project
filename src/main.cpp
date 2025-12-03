@@ -1,7 +1,6 @@
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>
 #include "Window.h"
-#include "Window.cpp"
 #include "Player.h"
 #include "Map.h"
 // #include "Ext.h"
@@ -30,7 +29,6 @@ SDL_AppResult SDL_AppEvent(void* AppState, SDL_Event* e) {
 
     if (e->type == SDL_EVENT_QUIT)
         return SDL_APP_SUCCESS;
-
 
     return SDL_APP_CONTINUE;
 }

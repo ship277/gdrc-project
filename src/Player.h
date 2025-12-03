@@ -14,7 +14,7 @@ public:
     void HandleEvents(const bool* key_states, float elapsedFrameTime);
 
 private:
-    inline static const float turnSpd = 400, speed = 300, diameter = 10, radius = diameter/2;
+    inline static const float turnSpd = 450, speed = 300, diameter = 10, radius = diameter/2;
     ext::FVec2 pos, nextPos, dir{0, -1};
     ext::IVec2 cTile, nTile;
     float angle = 0.0;
