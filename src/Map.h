@@ -10,9 +10,16 @@ class Map {
 public:
     Map();
     void DrawMap();
+    inline static const float GetTileSize() {
+        return tileSize;
+    }
+    std::vector<std::vector<int>> GetMapGrid() {
+        return mapGrid;
+    }
+private:
+    inline static const float tileSize = ((float)Window::GetHeight()/10);
     std::vector<std::vector<int>> mapGrid;
     SDL_FRect tile;
-    inline static const float tileSize = ((float)Window::GetHeight()/10);
 };
 
 #endif

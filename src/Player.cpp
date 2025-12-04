@@ -1,7 +1,4 @@
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_oldnames.h>
-#include <SDL3/SDL_render.h>
-#include <SDL3/SDL_scancode.h>
 #include <cmath>
 #include "Ext.h"
 #include "Player.h"
@@ -11,18 +8,23 @@
 Map map;
 
 Player::Player()
-    :   pos{((float)Window::GetHeight()/2), ((float)Window::GetHeight()/2)},
-        plr{pos.x - radius, pos.y - radius, diameter, diameter}
+    :   pos(initPos),
+        plr{pos.x - radius, pos.y - radius, diameter, diameter},
+        dir{1, 0},
+        angle(0.0)
 {
 }
 // movement. real-time next tile prediction if it's a wall or empty space.
 void Player::HandleEvents(const bool* key_states, float elapsedFrameTime) {
+    //  idk if this is even necessary i was just afraid of it growing too big if you keep spinning.
+    if (angle >= ext::pi * 2 || angle <= -ext::pi * 2) {
+        angle = 0.0;
+    }
     if (key_states[SDL_SCANCODE_W]) {
-            nTile = {(int)((pos.x + dir.x * (radius+1)) / map.tileSize), (int)((pos.y + dir.y * (radius+1)) / map.tileSize)};
-            if (map.mapGrid[nTile.y][nTile.x] == 0) {
+            nTile = {(int)((pos.x + dir.x * (radius+1)) / Map::GetTileSize()), (int)((pos.y + dir.y * (radius+1)) / Map::GetTileSize())};
+            if (map.GetMapGrid()[nTile.y][nTile.x] == 0) {
                 pos += dir * speed * elapsedFrameTime;
-                plr.y = pos.y - radius;
-                plr.x = pos.x - radius;
+                plr = {pos.x - radius, pos.y - radius, diameter, diameter};
             }
     }
     if (key_states[SDL_SCANCODE_A]) {
@@ -30,11 +32,10 @@ void Player::HandleEvents(const bool* key_states, float elapsedFrameTime) {
         dir = {std::cos(angle), std::sin(angle)};
     }
     if (key_states[SDL_SCANCODE_S]) {
-            nTile = {(int)((pos.x - dir.x * (radius+1)) / map.tileSize), (int)((pos.y - dir.y * (radius+1)) / map.tileSize)};
-            if (map.mapGrid[nTile.y][nTile.x] == 0) {
+            nTile = {(int)((pos.x - dir.x * (radius+1)) / Map::GetTileSize()), (int)((pos.y - dir.y * (radius+1)) / Map::GetTileSize())};
+            if (map.GetMapGrid()[nTile.y][nTile.x] == 0) {
                 pos -= dir * speed * elapsedFrameTime;
-                plr.y = pos.y - radius;
-                plr.x = pos.x - radius;
+                plr = {pos.x - radius, pos.y - radius, diameter, diameter};
             }
     }
     if (key_states[SDL_SCANCODE_D]) {
@@ -42,12 +43,22 @@ void Player::HandleEvents(const bool* key_states, float elapsedFrameTime) {
         dir = {std::cos(angle), std::sin(angle)};
     }
     if (key_states[SDL_SCANCODE_ESCAPE]) {
-        pos = {(float)Window::GetHeight()/2, (float)Window::GetHeight()/2};
-        plr.y = pos.y - radius;
-        plr.x = pos.x - radius;
-        
+        dir = {1, 0};
+        angle = {0.0};
+        pos = initPos;
+        plr = {pos.x - radius, pos.y - radius, diameter, diameter};
     }
 }
+
+//  cheatsheet for dir vector:
+//   0, -1      up
+//   1,  0      right
+//   0,  1      down
+//  -1,  0      left
+//  top-left:       negative
+//  bottom-right:   positive
+//  top/bottom:     bigger |y| value
+//  right/left:     bigger |X| value
 
 void Player::drawPlayer(ext::FVec2 dir) {
     SDL_SetRenderDrawColor(Window::GetRenderer(), 255, 0, 255, 255);

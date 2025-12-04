@@ -8,7 +8,7 @@ class Window {
 public:
     Window() {
         SDL_CreateWindowAndRenderer(
-            "tutorial",
+            "Game",
             width, height,
             SDL_WINDOW_OPENGL,
             &window, &renderer

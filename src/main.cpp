@@ -46,11 +46,12 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
 
     state->window.Update();
 
-    // if (key_states[SDL_SCANCODE_TAB]) {
+    // if (key_states[SDL_SCANCODE_TAB]) { // uncomment statement to simulate automap
         state->map.DrawMap();
         state->player.drawPlayer(state->player.GetDir());
     // }
 
+    //  //  debug info
     // std::cout << state->player.cTile.x << "," << state->player.cTile.y << " - ";
     // if (state->map.mapGrid[state->player.cTile.y][state->player.cTile.x] > 0) 
     //     std::cout << "Wall" << std::endl;
@@ -63,13 +64,13 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
     // else
     //     std::cout << "Space" << std::endl;
 
-    // std::cout << state->player.dir.x << "," << state->player.dir.y << std::endl;
-    // std::cout << state->player.angle << std::endl;
+    std::cout << state->player.dir.x << "," << state->player.dir.y << std::endl;
+    std::cout << state->player.angle << std::endl << "\n\n\n\n";
 
     SDL_RenderPresent(state->window.GetRenderer());
     return SDL_APP_CONTINUE;
 }
 
 void SDL_AppQuit(void* AppState, SDL_AppResult Result) {
-    delete /* & */AppState;
+    delete /* & */AppState; //  I don't know what the problem is but dereferencing 'AppState' all the way causes the exit code to be an error. it still works either way, but best not to touch it.
 }
