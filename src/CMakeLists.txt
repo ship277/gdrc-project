@@ -8,6 +8,7 @@ target_sources(raycaster491
     main.cpp
     Map.cpp
     Player.cpp
+    Ray.cpp
 )
 
 target_link_libraries(raycaster491

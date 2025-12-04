@@ -1,7 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <SDL3/SDL.h>
 #include "Ext.h"
 #include "Window.h"
 #include "Map.h"
