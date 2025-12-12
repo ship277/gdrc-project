@@ -37,17 +37,17 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
     ProgramState* state = static_cast<ProgramState*>(AppState);
 
     const bool *key_states = SDL_GetKeyboardState(NULL);
-    SDL_Renderer* renderer = state->window.GetRenderer();
+    SDL_Renderer* renderer = state->window.getRenderer();
     float elapsedFrameTime = (SDL_GetTicks() - state->PreviousFrame) / 1000.0f;
 
     state->PreviousFrame = SDL_GetTicks();
 
-    state->player.HandleEvents(key_states, elapsedFrameTime);
+    state->player.handleEvents(key_states, elapsedFrameTime);
 
     state->window.Update();
 
     // if (key_states[SDL_SCANCODE_TAB]) { // uncomment statement to simulate automap
-        state->map.DrawMap();
+        state->map.drawMap();
         state->player.drawPlayer(state->player.GetDir());
     // }
 
@@ -64,10 +64,10 @@ SDL_AppResult SDL_AppIterate(void* AppState) {
     // else
     //     std::cout << "Space" << std::endl;
 
-    std::cout << state->player.dir.x << "," << state->player.dir.y << std::endl;
-    std::cout << state->player.angle << std::endl << "\n\n\n\n";
+    // std::cout << state->player.dir.x << "," << state->player.dir.y << std::endl;
+    // std::cout << state->player.angle << std::endl << "\n\n\n\n";
 
-    SDL_RenderPresent(state->window.GetRenderer());
+    SDL_RenderPresent(state->window.getRenderer());
     return SDL_APP_CONTINUE;
 }
 

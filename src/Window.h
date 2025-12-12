@@ -31,17 +31,17 @@ public:
         }
     }
 
-    inline static SDL_Window* GetWindow() {
+    inline static SDL_Window* getWindow() {
         return window;
     }
-    inline static SDL_Renderer* GetRenderer() {
+    inline static SDL_Renderer* getRenderer() {
         return renderer;
     }
 
-    static int GetWidth() {
+    static int getWidth() {
         return width;
     }
-    static int GetHeight() {
+    static int getHeight() {
         return height;
     }
 

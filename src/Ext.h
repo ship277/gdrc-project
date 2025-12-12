@@ -6,7 +6,6 @@
 #define EXT_H
 
 #include <cmath>
-// #define _USE_DMATH_DEFINES
 
 class ext {
 public:

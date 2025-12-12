@@ -9,20 +9,17 @@ class Player {
 public:
     Player();
     void drawPlayer(ext::FVec2 dir);
+    void handleEvents(const bool* key_states, float elapsedFrameTime);
     ext::FVec2 GetDir() {
         return dir;
     }
-    void HandleEvents(const bool* key_states, float elapsedFrameTime);
-    //  temporary public for debugging in main; getter functions not intended to be added.
-    ext::FVec2 pos, nextPos, dir;
-    float angle;
 
 private:
-    inline static const float turnSpd = 450, speed = 300, diameter = 10, radius = diameter/2;
-    inline static const ext::FVec2 initPos = {((float)Window::GetHeight()/2 + Map::GetTileSize()/2), ((float)Window::GetHeight()/2 + Map::GetTileSize()/2)};
-    // ext::FVec2 pos, nextPos, dir;
+    float turnSpd, speed, diameter, radius;
+    inline static ext::FVec2 initPos = {((float)Window::getHeight()/2 + Map::getTileSize()/2), ((float)Window::getHeight()/2 + Map::getTileSize()/2)};
+    ext::FVec2 pos, nextPos, dir;
     ext::IVec2 cTile, nTile;
-    // float angle;
+    float angle;
     SDL_FRect plr;
 };
 

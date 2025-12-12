@@ -9,16 +9,27 @@
 class Map {
 public:
     Map();
-    void DrawMap();
-    inline static const float GetTileSize() {
+    void drawMap();
+    inline static float getTileSize() {
         return tileSize;
     }
-    std::vector<std::vector<int>> GetMapGrid() {
+    inline static std::vector<std::vector<int>> getMapGrid() {
         return mapGrid;
     }
 private:
-    inline static const float tileSize = ((float)Window::GetHeight()/10);
-    std::vector<std::vector<int>> mapGrid;
+    inline static float tileSize = ((float)Window::getHeight()/10);
+    inline static std::vector<std::vector<int>> mapGrid = {
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 4, 4, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 1},
+    {1, 0, 4, 0, 0, 0, 0, 4, 0, 2, 0, 2, 2, 2, 2, 0, 0, 3, 0, 0, 3, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 0, 4, 0, 0, 0, 0, 4, 0, 2, 2, 2, 2, 0, 2, 0, 3, 0, 0, 0, 0, 3, 0, 1},
+    {1, 0, 4, 4, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 0, 1},
+    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
     SDL_FRect tile;
 };
 
